@@ -58,7 +58,7 @@ app.use("/", require("./routes/homepage"));
 // app.use('/another-place', require("./studentRoutes"));
 app.listen(app.get("port"), () => {
   console.log(
-    `Node runnning in ${app.get("env")} mode at http://localhost:${app.get(
+    `Node running in ${app.get("env")} mode at http://localhost:${app.get(
       "port"
     )}`
   );
