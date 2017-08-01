@@ -58,8 +58,6 @@ app.use("/", require("./routes/homepage"));
 
 // **************** ROUTES ↑
 
-// Load our student routes nested under /another-place
-// app.use('/another-place', require("./studentRoutes"));
 if (require.main === module) {
   app.listen(app.get("port"), err => {
     if (err) {
@@ -68,7 +66,7 @@ if (require.main === module) {
     }
 
     console.log(
-      `Node running in ${app.get("env")} mode at http://localhost:${app.get(
+      `Node running in ${app.get("env")} mode @ http://localhost:${app.get(
         "port"
       )}`
     );
