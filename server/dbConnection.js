@@ -1,5 +1,5 @@
 let client = {
-  connection: null,
+  db: null,
   connect: connect
 };
 
@@ -9,14 +9,14 @@ function connect(callback) {
   var url = "mongodb://localhost:27017/robots";
 
   // Use connect method to connect to the Server
-  MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(url, (err, db) => {
     if (err) {
       throw err;
       exit(1);
     }
 
     console.log(`Connected MongoDB @ ${url}`);
-    client.connection = db;
+    client.db = db;
     callback(client);
   });
 }
