@@ -31,7 +31,11 @@ app.set("views", __dirname + "/views");
 // **************** MUSTACHE SETUP ↑
 
 // Setup Body Parser for forms
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
 
 // Setup Express Validator
 app.use(expressValidator());
@@ -56,10 +60,19 @@ app.use("/", require("./routes/homepage"));
 
 // Load our student routes nested under /another-place
 // app.use('/another-place', require("./studentRoutes"));
-app.listen(app.get("port"), () => {
-  console.log(
-    `Node running in ${app.get("env")} mode at http://localhost:${app.get(
-      "port"
-    )}`
-  );
-});
+if (require.main === module) {
+  app.listen(app.get("port"), err => {
+    if (err) {
+      throw err;
+      exit(1);
+    }
+
+    console.log(
+      `Node running in ${app.get("env")} mode at http://localhost:${app.get(
+        "port"
+      )}`
+    );
+  });
+}
+
+module.exports = app;
