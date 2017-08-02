@@ -7,6 +7,8 @@ const bodyParser = require("body-parser");
 const expressValidator = require("express-validator");
 const morgan = require("morgan");
 const session = require("express-session");
+const mongoose = require("mongoose");
+mongoose.Promise = require("bluebird");
 
 // Make our new app.
 const app = express();
@@ -52,13 +54,19 @@ app.use(
   })
 );
 
+// Connect to Monogo
+mongoose.connect("mongodb://localhost:27017/CHANGEMEPLEASEEEEEEE");
+
 // **************** ROUTES ↓
 
 app.use("/", require("./routes/homepage"));
 
 // **************** ROUTES ↑
 
+// Start the server if run directly
 if (require.main === module) {
+  // Start a db connect and list after it's connected.
+
   app.listen(app.get("port"), err => {
     if (err) {
       throw err;
