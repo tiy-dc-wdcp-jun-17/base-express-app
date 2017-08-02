@@ -6,7 +6,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "nodemon --inspect . -e js,mustache,ms",
-    "test": "jest --forceExit"
+    "test": "NODE_ENV=test jest --forceExit"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +16,7 @@
     "express": "^4.15.3",
     "express-session": "^1.15.4",
     "express-validator": "^3.2.1",
-    "mongodb": "^2.2.30",
+    "mongoose": "^4.11.5",
     "morgan": "^1.8.2",
     "mustache-express": "^1.2.5"
   },
