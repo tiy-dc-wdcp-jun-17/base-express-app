@@ -55,7 +55,7 @@ app.use(
 );
 
 // Connect to Monogo
-mongoose.connect("mongodb://localhost:27017/CHANGEMEPLEASEEEEEEE");
+require("./dbConnection");
 
 // **************** ROUTES ↓
 
