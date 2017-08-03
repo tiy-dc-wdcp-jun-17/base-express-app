@@ -52,31 +52,31 @@ app.use(
   })
 );
 
+// Connect to Mongo
+require("./dbConnection");
+
 // **************** ROUTES ↓
 
 app.use("/", require("./routes/homepage"));
 
 // **************** ROUTES ↑
 
-
 // Start the server if run directly
 if (require.main === module) {
   // Start a db connect and list after it's connected.
-  const dbClient = require("./dbConnection")
-  dbClient.connect((client) => {
-    app.listen(app.get("port"), err => {
-      if (err) {
-        throw err;
-        exit(1);
-      }
 
-      console.log(
-        `Node running in ${app.get("env")} mode @ http://localhost:${app.get(
-          "port"
-        )}`
-      );
-    });
-  })
+  app.listen(app.get("port"), err => {
+    if (err) {
+      throw err;
+      exit(1);
+    }
+
+    console.log(
+      `Node running in ${app.get("env")} mode @ http://localhost:${app.get(
+        "port"
+      )}`
+    );
+  });
 }
 
 module.exports = app;

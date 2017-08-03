@@ -1,24 +1,12 @@
-let client = {
-  db: null,
-  connect: connect
-};
+const mongoose = require("mongoose");
+mongoose.Promise = require("bluebird");
 
-function connect(callback) {
-  var MongoClient = require("mongodb").MongoClient;
-  // Connection URL
-  var url = "mongodb://localhost:27017/robots";
+const MONGO_DB = "robots";
+const MONGO_URL = `mongodb://localhost:27017/${MONGO_DB}`;
 
-  // Use connect method to connect to the Server
-  MongoClient.connect(url, (err, db) => {
-    if (err) {
-      throw err;
-      exit(1);
-    }
+mongoose.connect(MONGO_URL);
 
-    console.log(`Connected MongoDB @ ${url}`);
-    client.db = db;
-    callback(client);
-  });
-}
-
-module.exports = client;
+mongoose.connection.on("error", function handleDBErrors(err) {
+  console.error("DB Error", err);
+  process.exit(128);
+});
